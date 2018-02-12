@@ -2,7 +2,7 @@
 
 This is a example dapp on Ethereum local network using Truffle Framework.
 
-We develop a dapp with creation of dynamic proposals. Every user can create proposals and vote them. Of course, the users can vote once per proposal with the options approve, against or abstence.
+We develop a dapp where the users can create proposals and vote them. Of course, they can vote once per proposal with the options approve, against or absence.
 
 # Preconditions
 
@@ -32,4 +32,4 @@ You need pay attention to configure and run Ganache (for a local blockchain) and
 
 Developed by Bukosabino at Lecrin Technologies - http://lecrintech.com
 
-We are glad receving any contribution, idea or feedback.
+We are glad receiving any contribution, idea or feedback.
