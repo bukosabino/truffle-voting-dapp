@@ -1,6 +1,6 @@
 # Voting example dapp on Truffle Framework.
 
-This is a example dapp on Ethereum local network using Truffle Framework.
+This is an example dapp on Ethereum local network using Truffle Framework.
 
 We develop a dapp where the users can create proposals and vote them. Of course, they can vote once per proposal with the options approve, against or absence.
 
@@ -27,6 +27,7 @@ You need pay attention to configure and run Ganache (for a local blockchain) and
 * Control of asynchronism events.
 * Init and end dates to proposals.
 * Anonymous users.
+* Use Ropstem Ethereum testnets.
 
 # Credits:
 
