@@ -27,7 +27,6 @@ You need pay attention to configure and run Ganache (for a local blockchain) and
 * Control of asynchronism events.
 * Init and end dates to proposals.
 * Anonymous users.
-* Develop tests
 
 # Credits:
 
