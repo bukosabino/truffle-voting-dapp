@@ -3,21 +3,40 @@ pragma solidity ^0.4.17;
 
 contract Voting {
 
+    struct Proposal {
+        string title;
+        uint voteCountPos;
+        uint voteCountNeg;
+        uint voteCountAbs;
+        mapping (address => Voter) voters;
+        address[] votersAddress;
+    }
+
     struct Voter {
         uint value;
         bool voted;
     }
 
-    struct Proposal {
-        string title;
-        uint voteCountPos; // vote number accumulated
-        uint voteCountNeg; // vote number accumulated
-        uint voteCountAbs; // vote number accumulated
-        mapping (address => Voter) voters;
-        address[] votersAddress;
+    Proposal[] public proposals;
+
+    function getNumProposals() public view returns (uint) {
+        return proposals.length;
     }
 
-    Proposal[] public proposals;
+    function getProposal(uint proposalInt) public view returns (uint, string, uint, uint, uint, address[]) {
+        if (proposals.length > 0) {
+            return (proposalInt, proposals[proposalInt].title, proposals[proposalInt].voteCountPos,
+                proposals[proposalInt].voteCountNeg, proposals[proposalInt].voteCountAbs,
+                proposals[proposalInt].votersAddress);
+        }
+    }
+
+    function addProposal(string title) public returns (bool) {
+        Proposal memory proposal;
+        proposal.title = title;
+        proposals.push(proposal);
+        return true;
+    }
 
     function vote(uint proposalInt, uint voteValue) public returns (bool) {
 
@@ -25,7 +44,7 @@ contract Voting {
             return false;
         } // check duplicate key
 
-        require(voteValue == 1 || voteValue == 2 || voteValue == 3); // voteValue not valid
+        require(voteValue == 1 || voteValue == 2 || voteValue == 3); // check voteValue
 
         if (voteValue == 1) {
             proposals[proposalInt].voteCountPos += 1;
@@ -39,25 +58,6 @@ contract Voting {
         proposals[proposalInt].voters[msg.sender].voted = true;
         proposals[proposalInt].votersAddress.push(msg.sender);
 
-        return true;
-    }
-
-    function getProposal(uint proposalInt) public view returns (uint, string, uint, uint, uint, address[]) {
-        if (proposals.length > 0) {
-            return (proposalInt, proposals[proposalInt].title, proposals[proposalInt].voteCountPos,
-                proposals[proposalInt].voteCountNeg, proposals[proposalInt].voteCountAbs,
-                proposals[proposalInt].votersAddress);
-        }
-    }
-
-    function getNumProposals() public view returns (uint) {
-        return proposals.length;
-    }
-
-    function addProposal(string title) public returns (bool) {
-        Proposal memory proposal;
-        proposal.title = title;
-        proposals.push(proposal);
         return true;
     }
 
