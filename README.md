@@ -15,17 +15,25 @@ You need pay attention to configure and run Ganache (for a local blockchain) and
 # Deployment
 
 > git clone https://github.com/bukosabino/truffle-voting-dapp.git
+
 > cd truffle-voting-dapp
+
 > npm install -g truffle
+
 > npm install
+
 > truffle compile
+
 > truffle migrate --reset
+
 > npm run dev
 
 # TODO:
 
 > Control of asynchronism events.
+
 > Init and end dates to proposals.
+
 > Anonymous users.
 
 # Credits:
