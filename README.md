@@ -6,11 +6,9 @@ We develop a dapp where the users can create proposals and vote them. Of course,
 
 # Preconditions
 
-This dapp is based on the official tutorial of Truffle Framework: http://truffleframework.com/tutorials/pet-shop
+This dapp is based on the official tutorial of Truffle Framework: http://truffleframework.com/tutorials/pet-shop. So, I strongly recommend to read it before.
 
-So, I recommend you to read it before you keep on with this example.
-
-You need pay attention to configure and run Ganache (for a local blockchain) and MetaMask (for a client web blockchain).
+You need to pay attention to configure and run Ganache (for a local blockchain) and MetaMask (for a client web blockchain).
 
 # Deployment
 
@@ -33,4 +31,4 @@ You need pay attention to configure and run Ganache (for a local blockchain) and
 
 Developed by Bukosabino at Lecrin Technologies - http://lecrintech.com
 
-We are glad receiving any contribution, idea or feedback.
+We are glad to receive any contribution, idea or feedback.
