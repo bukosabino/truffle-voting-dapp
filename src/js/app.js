@@ -6,24 +6,27 @@ App = {
     return App.initWeb3();
   },
 
+  // Instance Web3
   initWeb3: function() {
     // Is there an injected web3 instance?
     if (typeof web3 !== 'undefined') {
       App.web3Provider = web3.currentProvider;
     } else {
       // If no injected web3 instance is detected, fall back to Ganache
+      // Only useful in a development environment
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
     web3 = new Web3(App.web3Provider);
     return App.initContract();
   },
 
+  // Instance contract
   initContract: function() {
     $.getJSON('Voting.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract
-      App.contracts.HelloWorld = TruffleContract(data);
+      App.contracts.Voting = TruffleContract(data);
       // Set the provider for our contract
-      App.contracts.HelloWorld.setProvider(App.web3Provider);
+      App.contracts.Voting.setProvider(App.web3Provider);
       // Use our contract to retrieve value data
       return App.getProposals();
     });
@@ -42,7 +45,7 @@ App = {
         console.log(error);
       }
       var account = accounts[0];
-      App.contracts.HelloWorld.deployed().then(function(instance) {
+      App.contracts.Voting.deployed().then(function(instance) {
         proposalsInstance = instance;
         proposalsInstance.getNumProposals.call().then(function(numProposals) {
           var wrapperProposals = $('#wrapperProposals');
@@ -82,7 +85,7 @@ App = {
         console.log(error);
       }
       var account = accounts[0];
-      App.contracts.HelloWorld.deployed().then(function(instance) {
+      App.contracts.Voting.deployed().then(function(instance) {
         proposalInstance = instance;
         return proposalInstance.addProposal(value, {from: account});
       }).then(function(result) {
@@ -104,7 +107,7 @@ App = {
         console.log(error);
       }
       var account = accounts[0];
-      App.contracts.HelloWorld.deployed().then(function(instance) {
+      App.contracts.Voting.deployed().then(function(instance) {
         voteInstance = instance;
         return voteInstance.vote(proposalInt, voteValue, {from: account});
       }).then(function(result) {
