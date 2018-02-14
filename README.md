@@ -32,3 +32,8 @@ You need to pay attention to configure and run Ganache (for a local blockchain) 
 Developed by Bukosabino at Lecrin Technologies - http://lecrintech.com
 
 We are glad to receive any contribution, idea or feedback.
+
+# Donation Address
+
+ETH: 0x96d6e3823b655602cc643996c1ada8b6b532f0c0
+DASH: XwdkUf2WUmnEZ6Jes4S79N2u5UeCT98puT
