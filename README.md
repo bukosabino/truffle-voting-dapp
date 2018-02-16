@@ -36,4 +36,4 @@ We are glad to receive any contribution, idea or feedback.
 # Donation Address
 
 * ETH: 0x96d6e3823b655602cc643996c1ada8b6b532f0c0
-* DASH: XwdkUf2WUmnEZ6Jes4S79N2u5UeCT98puT
+* DASH: XrXUic1huVaFfSqDygveADwNAbdutz41VG
