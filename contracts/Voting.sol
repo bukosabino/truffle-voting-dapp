@@ -20,7 +20,7 @@ contract Voting {
     Proposal[] public proposals;
 
     event CreatedProposalEvent();
-    
+
     event CreatedVoteEvent();
 
     function getNumProposals() public view returns (uint) {
@@ -35,14 +35,15 @@ contract Voting {
         }
     }
 
-    function addProposal(string title) public {
+    function addProposal(string title) public returns (bool) {
         Proposal memory proposal;
         CreatedProposalEvent();
         proposal.title = title;
         proposals.push(proposal);
+        return true;
     }
 
-    function vote(uint proposalInt, uint voteValue) public {
+    function vote(uint proposalInt, uint voteValue) public returns (bool) {
         if (proposals[proposalInt].voters[msg.sender].voted == false) { // check duplicate key
             require(voteValue == 1 || voteValue == 2 || voteValue == 3); // check voteValue
 
@@ -58,6 +59,9 @@ contract Voting {
             proposals[proposalInt].voters[msg.sender].voted = true;
             proposals[proposalInt].votersAddress.push(msg.sender);
             CreatedVoteEvent();
+            return true;
+        } else {
+            return false;
         }
     }
 
