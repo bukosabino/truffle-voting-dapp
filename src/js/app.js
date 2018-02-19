@@ -33,17 +33,20 @@ App = {
     return App.bindEvents();
   },
 
-  bindEvents: function() { // HTML events
+  bindEvents: function() {
+
     $(document).on('click', '.btn-value', function(e){
       var $this = $(this);
       $this.button('loading');
       App.handleAddProposal(e);
     });
+
     $(document).on('click', '.btn-vote', function(e) {
       var $this = $(this);
       $this.button('loading');
       App.handleAddVote(e);
     });
+
   },
 
   getProposals: function() {

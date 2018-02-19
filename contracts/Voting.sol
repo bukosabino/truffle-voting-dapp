@@ -20,6 +20,7 @@ contract Voting {
     Proposal[] public proposals;
 
     event CreatedProposalEvent();
+    
     event CreatedVoteEvent();
 
     function getNumProposals() public view returns (uint) {
