@@ -28,17 +28,25 @@ App = {
       // Set the provider for our contract
       App.contracts.Voting.setProvider(App.web3Provider);
       // Use our contract to retrieve value data
-      return App.getProposals();
+      App.getProposals();
     });
     return App.bindEvents();
   },
 
-  bindEvents: function() {
-    $(document).on('click', '.btn-value', App.handleAddProposal);
-    $(document).on('click', '.btn-vote', App.handleAddVote);
+  bindEvents: function() { // HTML events
+    $(document).on('click', '.btn-value', function(e){
+      var $this = $(this);
+      $this.button('loading');
+      App.handleAddProposal(e);
+    });
+    $(document).on('click', '.btn-vote', function(e) {
+      var $this = $(this);
+      $this.button('loading');
+      App.handleAddVote(e);
+    });
   },
 
-  getProposals: function(values, account) {
+  getProposals: function() {
     var proposalsInstance;
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
@@ -49,6 +57,7 @@ App = {
         proposalsInstance = instance;
         proposalsInstance.getNumProposals.call().then(function(numProposals) {
           var wrapperProposals = $('#wrapperProposals');
+          wrapperProposals.empty();
           var proposalTemplate = $('#proposalTemplate');
           for (var i=0; i<numProposals; i++) {
             proposalsInstance.getProposal.call(i).then(function(data) {
@@ -74,6 +83,7 @@ App = {
         });
       });
     });
+    $('button').button('reset');
   },
 
   handleAddProposal: function(event) {
@@ -89,10 +99,12 @@ App = {
         proposalInstance = instance;
         return proposalInstance.addProposal(value, {from: account});
       }).then(function(result) {
-        App.clean();
-        return App.getProposals();
+        var event = proposalInstance.CreatedProposalEvent();
+        App.handleEvent(event);
+        $('.input-value').val(''); // clean input
       }).catch(function(err) {
         console.log(err.message);
+        $('button').button('reset');
       });
     });
   },
@@ -111,19 +123,26 @@ App = {
         voteInstance = instance;
         return voteInstance.vote(proposalInt, voteValue, {from: account});
       }).then(function(result) {
-        App.clean();
-        return App.getProposals();
+        var event = voteInstance.CreatedVoteEvent();
+        App.handleEvent(event);
       }).catch(function(err) {
         console.log(err.message);
+        $('button').button('reset');
       });
     });
   },
 
-  clean: function() { // Clean node
-    $('.input-value').val('');
-    $('#wrapperProposals').empty();
+  handleEvent: function(event) {
+    console.log('Waiting for a event...');
+    event.watch(function(error, result) {
+      if (!error) {
+        App.getProposals();
+      } else {
+        console.log(error);
+      }
+      event.stopWatching();
+    });
   }
-
 };
 
 $(function() {

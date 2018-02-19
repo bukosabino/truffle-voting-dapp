@@ -21,7 +21,6 @@ You need to pay attention to configure and run Ganache (for a local blockchain) 
 
 # TODO:
 
-* Control of asynchronism events.
 * Init and end dates to proposals.
 * Anonymous users.
 * Use Ropstem Ethereum testnets.

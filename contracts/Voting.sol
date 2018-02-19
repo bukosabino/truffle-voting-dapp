@@ -19,6 +19,9 @@ contract Voting {
 
     Proposal[] public proposals;
 
+    event CreatedProposalEvent();
+    event CreatedVoteEvent();
+
     function getNumProposals() public view returns (uint) {
         return proposals.length;
     }
@@ -31,34 +34,30 @@ contract Voting {
         }
     }
 
-    function addProposal(string title) public returns (bool) {
+    function addProposal(string title) public {
         Proposal memory proposal;
+        CreatedProposalEvent();
         proposal.title = title;
         proposals.push(proposal);
-        return true;
     }
 
-    function vote(uint proposalInt, uint voteValue) public returns (bool) {
+    function vote(uint proposalInt, uint voteValue) public {
+        if (proposals[proposalInt].voters[msg.sender].voted == false) { // check duplicate key
+            require(voteValue == 1 || voteValue == 2 || voteValue == 3); // check voteValue
 
-        if (proposals[proposalInt].voters[msg.sender].voted == true) {
-            return false;
-        } // check duplicate key
+            if (voteValue == 1) {
+                proposals[proposalInt].voteCountPos += 1;
+            } else if (voteValue == 2) {
+                proposals[proposalInt].voteCountNeg += 1;
+            } else {
+                proposals[proposalInt].voteCountAbs += 1;
+            }
 
-        require(voteValue == 1 || voteValue == 2 || voteValue == 3); // check voteValue
-
-        if (voteValue == 1) {
-            proposals[proposalInt].voteCountPos += 1;
-        } else if (voteValue == 2) {
-            proposals[proposalInt].voteCountNeg += 1;
-        } else {
-            proposals[proposalInt].voteCountAbs += 1;
+            proposals[proposalInt].voters[msg.sender].value = voteValue;
+            proposals[proposalInt].voters[msg.sender].voted = true;
+            proposals[proposalInt].votersAddress.push(msg.sender);
+            CreatedVoteEvent();
         }
-
-        proposals[proposalInt].voters[msg.sender].value = voteValue;
-        proposals[proposalInt].voters[msg.sender].voted = true;
-        proposals[proposalInt].votersAddress.push(msg.sender);
-
-        return true;
     }
 
 }

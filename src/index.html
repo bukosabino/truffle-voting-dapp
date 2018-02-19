@@ -16,6 +16,8 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <div class="container">
@@ -33,7 +35,7 @@
           <div class="input-group">
             <input type="text" class="form-control input-value" name="input" placeholder="New proposal..." value="">
             <div class="input-group-btn">
-              <button type="button" name="button" class="btn btn-default btn-value">Save</button>
+              <button type="button" name="button" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order" class="btn btn-default btn-value">Save</button>
             </div>
           </div>
         </div>
@@ -57,7 +59,7 @@
               <p>Approve vote: <span class="numVotesPos">0</span></p>
             </div>
             <div class="col-xs-6">
-              <button type="button" name="button" data-vote="1" data-proposal="" class="btn btn-primary btn-vote">Approve</button>
+              <button type="button" name="button" data-vote="1" data-proposal="" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order" class="btn btn-primary btn-vote">Approve</button>
             </div>
           </div>
           <br>
@@ -66,7 +68,7 @@
               <p>Against votes: <span class="numVotesNeg">0</span></p>
             </div>
             <div class="col-xs-6">
-              <button type="button" name="button" data-vote="2" data-proposal="" class="btn btn-danger btn-vote">Against</button>
+              <button type="button" name="button" data-vote="2" data-proposal="" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order" class="btn btn-danger btn-vote">Against</button>
             </div>
           </div>
           <br>
@@ -75,7 +77,7 @@
               <p>Abstence votes: <span class="numVotesAbs">0</span></p>
             </div>
             <div class="col-xs-6">
-              <button type="button" name="button" data-vote="3" data-proposal="" class="btn btn-warning btn-vote">Abstence</button>
+              <button type="button" name="button" data-vote="3" data-proposal="" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order" class="btn btn-warning btn-vote">Abstence</button>
             </div>
           </div>
         </div>
