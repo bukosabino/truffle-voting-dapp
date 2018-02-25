@@ -23,7 +23,7 @@ You need to pay attention to configure and run Ganache (for a local blockchain) 
 
 * Init and end dates to proposals.
 * Anonymous users.
-* Use Ropstem Ethereum testnets.
+* Use Ethereum testnet and deploy demo
 
 # Credits:
 
