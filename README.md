@@ -2,7 +2,7 @@
 
 This is an example dapp on Ethereum local network using Truffle Framework.
 
-We develop a dapp where the users can create proposals and vote them. Of course, they can vote once per proposal with the options approve, against or absence.
+We develop a dapp where the users can create proposals and vote them. Of course, they can vote once per proposal with the options in support, against or absence.
 
 # Preconditions
 
