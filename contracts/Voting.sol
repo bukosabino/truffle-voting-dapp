@@ -20,7 +20,6 @@ contract Voting {
     Proposal[] public proposals;
 
     event CreatedProposalEvent();
-
     event CreatedVoteEvent();
 
     function getNumProposals() public view returns (uint) {
@@ -29,9 +28,8 @@ contract Voting {
 
     function getProposal(uint proposalInt) public view returns (uint, string, uint, uint, uint, address[]) {
         if (proposals.length > 0) {
-            return (proposalInt, proposals[proposalInt].title, proposals[proposalInt].voteCountPos,
-                proposals[proposalInt].voteCountNeg, proposals[proposalInt].voteCountAbs,
-                proposals[proposalInt].votersAddress);
+            Proposal storage p = proposals[proposalInt]; // Get the proposal
+            return (proposalInt, p.title, p.voteCountPos, p.voteCountNeg, p.voteCountAbs, p.votersAddress);
         }
     }
 
@@ -46,18 +44,17 @@ contract Voting {
     function vote(uint proposalInt, uint voteValue) public returns (bool) {
         if (proposals[proposalInt].voters[msg.sender].voted == false) { // check duplicate key
             require(voteValue == 1 || voteValue == 2 || voteValue == 3); // check voteValue
-
+            Proposal storage p = proposals[proposalInt]; // Get the proposal
             if (voteValue == 1) {
-                proposals[proposalInt].voteCountPos += 1;
+                p.voteCountPos += 1;
             } else if (voteValue == 2) {
-                proposals[proposalInt].voteCountNeg += 1;
+                p.voteCountNeg += 1;
             } else {
-                proposals[proposalInt].voteCountAbs += 1;
+                p.voteCountAbs += 1;
             }
-
-            proposals[proposalInt].voters[msg.sender].value = voteValue;
-            proposals[proposalInt].voters[msg.sender].voted = true;
-            proposals[proposalInt].votersAddress.push(msg.sender);
+            p.voters[msg.sender].value = voteValue;
+            p.voters[msg.sender].voted = true;
+            p.votersAddress.push(msg.sender);
             CreatedVoteEvent();
             return true;
         } else {
