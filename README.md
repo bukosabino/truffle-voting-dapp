@@ -1,6 +1,6 @@
 # Voting example dapp on Truffle Framework.
 
-This is an example dapp on Ethereum local network using Truffle Framework.
+This is a dapp example on Ethereum local network using Truffle Framework.
 
 If you want use this dapp on ropsten testnet you can check this repo: https://github.com/bukosabino/truffle-voting-dapp-ropsten
 
