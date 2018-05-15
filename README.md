@@ -6,7 +6,7 @@ If you want use this dapp on ropsten testnet you can check this repo: https://gi
 
 We develop a DApp where the users can create proposals and vote them. Of course, they can vote once per proposal with the options in support, against or absence.
 
-You can read more about this [tutorial in Spanish language](https://medium.com/@bukosabino/desarrollo-de-una-dapp-sobre-la-red-ethereum-1a4665c3856a)
+[For Spanish speaking readers, you can read more about this tutorial](https://medium.com/@bukosabino/desarrollo-de-una-dapp-sobre-la-red-ethereum-1a4665c3856a).
 
 # Preconditions
 
