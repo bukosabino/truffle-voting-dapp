@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.5.0;
 
 
 contract Voting {
@@ -26,16 +26,16 @@ contract Voting {
         return proposals.length;
     }
 
-    function getProposal(uint proposalInt) public view returns (uint, string, uint, uint, uint, address[]) {
+    function getProposal(uint proposalInt) public view returns (uint, string memory, uint, uint, uint, address[] memory) {
         if (proposals.length > 0) {
             Proposal storage p = proposals[proposalInt]; // Get the proposal
             return (proposalInt, p.title, p.voteCountPos, p.voteCountNeg, p.voteCountAbs, p.votersAddress);
         }
     }
 
-    function addProposal(string title) public returns (bool) {
+    function addProposal(string memory title) public returns (bool) {
         Proposal memory proposal;
-        CreatedProposalEvent();
+        emit CreatedProposalEvent();
         proposal.title = title;
         proposals.push(proposal);
         return true;
@@ -55,7 +55,7 @@ contract Voting {
             p.voters[msg.sender].value = voteValue;
             p.voters[msg.sender].voted = true;
             p.votersAddress.push(msg.sender);
-            CreatedVoteEvent();
+            emit CreatedVoteEvent();
             return true;
         } else {
             return false;
